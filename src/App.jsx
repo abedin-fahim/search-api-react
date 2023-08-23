@@ -1,10 +1,28 @@
-import { useState } from 'react';
-import './App.css';
+import { useState, useEffect } from 'react';
+import { getPosts } from './api/axios';
+import SearchBar from './SearchBar';
+import ListPost from './ListPost';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [posts, setPosts] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
-  return <></>;
+  useEffect(() => {
+    getPosts().then((json) => {
+      setPosts(json);
+      setSearchResults(json);
+    });
+  }, []);
+
+  return (
+    <>
+      <SearchBar
+        posts={posts}
+        setSearchResults={setSearchResults}
+      />
+      <ListPost searchResults={searchResults} />
+    </>
+  );
 }
 
 export default App;
