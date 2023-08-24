@@ -1,11 +1,11 @@
 import Post from './Post';
 const ListPost = ({ searchResults }) => {
-  const results = searchResults.map((post) => {
+  const results = searchResults.map((post) => (
     <Post
       key={post.id}
       post={post}
-    />;
-  });
+    />
+  ));
   const content = results.length ? (
     results
   ) : (
